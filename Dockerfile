@@ -3,7 +3,7 @@ FROM ubuntu:latest
 ENV DEBIAN_FRONTEND noninteractive
 ENV PATH=$PATH:/usr/local/nginx/sbin
 
-RUN mkdir /src && mkdir /config && mkdir /rec
+RUN mkdir /src && mkdir /config && mkdir /logs
 
 EXPOSE 1935
 EXPOSE 80
