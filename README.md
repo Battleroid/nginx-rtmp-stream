@@ -22,9 +22,14 @@ streams by using the streaming service with your stream name. For example `mpv
 rtmp://localhost:1935/livecoding/name` will give the output of the Livecoding
 stream.
 
+### Notes
+
 Obviously if you do not want to use a service simply turn off its block (`live
 on` to `live off`) and also remove the ffmpeg command within `application all
 …` if it has one.
 
 Do the same for the recording of videos; if you don't need that just remove the
 mount and turn off the recorder altogether (`record all` to `record off`).
+
+You may need to change the ingest URLs in `nginx.conf`; Be sure to double check
+if the ingest URLs are different and need to be changed before moving on.
