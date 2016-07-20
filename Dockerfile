@@ -7,36 +7,34 @@ RUN \
 	mkdir /src && \
 	mkdir /logs && \
 	mkdir /vids && \
-	mkdir /config
+	mkdir /config && \
+	chmod 777 /vids
 
 RUN \
 	apt-get update && \
-	apt-get upgrade -y && \
+	apt-get upgrade -yq && \
 	apt-get clean
 
 RUN \
-	apt-get install -y build-essential wget && \
-	apt-get install -y libpcre3-dev zlib1g-dev libssl-dev && \
-	apt-get install -y software-properties-common && \
-	add-apt-repository ppa:mc3man/trusty-media && \
-	apt-get update && \
-	apt-get install -y ffmpeg
+	apt-get install -yq build-essential wget && \
+	apt-get install -yq libpcre3-dev zlib1g-dev libssl-dev && \
+	apt-get install -yq ffmpeg
 
 RUN \
 	cd /src && \
-	wget http://nginx.org/download/nginx-1.6.2.tar.gz && \
-	tar zxf nginx-1.6.2.tar.gz && \
-	rm nginx-1.6.2.tar.gz
+	wget http://nginx.org/download/nginx-1.11.1.tar.gz && \
+	tar zxf nginx-1.11.1.tar.gz && \
+	rm nginx-1.11.1.tar.gz
 
 RUN \
 	cd /src && \
-	wget https://github.com/arut/nginx-rtmp-module/archive/v1.1.6.tar.gz && \
-	tar zxf v1.1.6.tar.gz && \
-	rm v1.1.6.tar.gz
+	wget https://github.com/arut/nginx-rtmp-module/archive/v1.1.8.tar.gz && \
+	tar zxf v1.1.8.tar.gz && \
+	rm v1.1.8.tar.gz
 
 RUN \
-	cd /src/nginx-1.6.2 && \
-	./configure --add-module=/src/nginx-rtmp-module-1.1.6 --conf-path=/config/nginx.conf --error-log-path=/logs/error.log --http-log-path=/logs/access.log && \
+	cd /src/nginx-1.11.1 && \
+	./configure --add-module=/src/nginx-rtmp-module-1.1.8 --conf-path=/config/nginx.conf --error-log-path=/logs/error.log --http-log-path=/logs/access.log --with-debug && \
 	make && \
 	make install
 
